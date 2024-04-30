@@ -63,11 +63,7 @@ class Generator:
 
     @staticmethod
     def get_random_en_nickname(
-        combos: list[WordList] = [
-            EN_ADJECTIVES_WORDS,
-            EN_COLORS_WORDS,
-            EN_ANIMALS_WORDS,
-        ],
+        combos: list[WordList] | None = None,
         separator: str = " ",
         style: StyleEnum = StyleEnum.CAPITAL,
     ) -> str:
@@ -93,6 +89,8 @@ class Generator:
         Returns:
             str: random english nickname, joined by separator
         """
+        if combos is None:
+            combos = [EN_ADJECTIVES_WORDS, EN_COLORS_WORDS, EN_ANIMALS_WORDS]
         Generator.__check_combos(combos, Lang.EN)
         combos.sort(key=lambda combo: combo.words_type.value)
 
@@ -112,11 +110,7 @@ class Generator:
 
     @staticmethod
     def get_random_ru_nickname(
-        combos: list[WordList] = [
-            RU_ADJECTIVES_WORDS,
-            RU_COLORS_WORDS,
-            RU_ANIMALS_WORDS,
-        ],
+        combos: list[WordList] | None = None,
         separator: str = " ",
         style: StyleEnum = StyleEnum.CAPITAL,
     ) -> str:
@@ -143,6 +137,8 @@ class Generator:
         Returns:
             str: random russian nickname, joined by separator
         """
+        if combos is None:
+            combos = [RU_ADJECTIVES_WORDS, RU_COLORS_WORDS, RU_ANIMALS_WORDS]
         Generator.__check_combos(combos, Lang.RU)
         combos.sort(key=lambda combo: combo.words_type.value)
 
