@@ -5,9 +5,10 @@ name: Nickname Generator Package
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - nickname_gen/**
+      - tests/**
+      - .github/**
 
 permissions:
   contents: read
