@@ -10,7 +10,7 @@ disallow_untyped_defs = true
 
 [tool.poetry]
 name = "nickname-gen"
-version = "0.1.4"
+version = "0.1.5"
 description = "Simple Python package for generate unique nikcname, e.g. Cool Crow, Purple Duck, Red Brave Tiger. It supports both English and Russian (including gender)."
 authors = ["L4zzur <popovnikita01@gmail.com>"]
 license = "MIT"

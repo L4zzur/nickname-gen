@@ -1,5 +1,4 @@
 import random
-from enum import Enum
 
 import pymorphy3  # type: ignore
 
