@@ -1,0 +1,116 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Nickname Generator Package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  linting_black:
+    name: Linting with black (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install black
+        run: pip install black
+
+      - name: Run black
+        run: black --check --verbose --diff --color .
+  
+  linting_flake:
+    name: Linting with flake8 (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Install flake8 with plugins
+        run: pip install flake8 flake8-bugbear
+
+      - name: Flake8 linting
+        run: |
+          flake8 --statistics --show-source --max-line-length 88  .
+
+  typing_mypy:
+    name: Checking static types with mypy (${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "poetry"
+
+      - name: Install dependencies
+        run: |
+          poetry install
+
+      - name: Mypy checking
+        run: |
+          poetry run mypy .
+
+  testing:
+    name: Testing ${{ matrix.python-version }}
+    needs: [linting_black, linting_flake, typing_mypy]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - name: Get full code
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pip install poetry
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "poetry"
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.path }}
+          poetry install
+
+      - name: Run tests
+        run: |
+          cd ${{ env.path }}
+          poetry run pytest .
