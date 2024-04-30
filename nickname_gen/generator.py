@@ -19,13 +19,7 @@ from nickname_gen.words import (
     RU_ANIMALS_WORDS,
     RU_COLORS_WORDS,
 )
-from nickname_gen.wtypes import Lang, WordList, WordType
-
-
-class StyleEnum(str, Enum):
-    CAPITAL = "capital"
-    UPPER = "upper"
-    LOWER = "lower"
+from nickname_gen.wtypes import Lang, WordList, WordType, StyleEnum
 
 
 class Generator:
