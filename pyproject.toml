@@ -15,6 +15,7 @@ description = "Simple Python package for generate unique nikcname, e.g. Green Ca
 authors = ["L4zzur <popovnikita01@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+repository = "https://github.com/L4zzur/nickname-gen"
 packages = [{include = "nickname_gen"}]
 
 [tool.poetry.dependencies]
