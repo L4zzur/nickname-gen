@@ -1,5 +1,6 @@
 # Nickname Generator
 ![Tests](https://github.com/L4zzur/nickname-gen/actions/workflows/python-app.yml/badge.svg)
+
 The Nickname Generator package provides a simple functions to generate random nicknames.
 
 ## Installation
