@@ -107,10 +107,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ${{ env.path }}
           poetry install
 
       - name: Run tests
         run: |
-          cd ${{ env.path }}
           poetry run pytest .
