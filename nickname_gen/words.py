@@ -25,13 +25,3 @@ EN_COLORS_WORDS = WordList(
 EN_ADJECTIVES_WORDS = WordList(
     "English adjectives", Lang.EN, __EN_ADJECTIVES, WordType.ADJECTIVE
 )
-
-
-__all__ = [
-    "RU_ANIMALS_WORDS",
-    "RU_COLORS_WORDS",
-    "RU_ADJECTIVES_WORDS",
-    "EN_ANIMALS_WORDS",
-    "EN_COLORS_WORDS",
-    "EN_ADJECTIVES_WORDS",
-]
