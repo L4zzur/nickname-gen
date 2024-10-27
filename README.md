@@ -15,7 +15,7 @@ Generates a random nickname in English.
 
 ```python
 from nickname_gen.generator import Generator
-from nickname.gen.wtypes import WordList, WordType, Lang
+from nickname_gen.wtypes import WordList, WordType, Lang
 
 # Using default parameters
 nickname = Generator.get_random_en_nickname()
